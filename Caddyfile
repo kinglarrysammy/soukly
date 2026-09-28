@@ -1,0 +1,18 @@
+# Optional: single-host HTTPS with Caddy on a VPS
+# Replace staging.example.com with your domain (DNS A record → server IP)
+#
+# caddy run --config Caddyfile
+
+staging.example.com {
+	encode gzip
+
+	handle /api/* {
+		reverse_proxy 127.0.0.1:8787
+	}
+
+	handle {
+		root * /var/www/soukly
+		try_files {path} /index.html
+		file_server
+	}
+}

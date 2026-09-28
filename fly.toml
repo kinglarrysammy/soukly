@@ -1,0 +1,23 @@
+app = "soukly-staging"
+primary_region = "cdg"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  APP_ENV = "staging"
+  SOUKLY_PORT = "8787"
+  COOKIE_SECURE = "true"
+  COOKIE_SAMESITE = "Lax"
+
+[http_service]
+  internal_port = 8787
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+
+[[vm]]
+  memory = "512mb"
+  cpu_kind = "shared"
+  cpus = 1

@@ -1,0 +1,30 @@
+services:
+  api:
+    build: .
+    environment:
+      APP_ENV: staging
+      SOUKLY_PORT: "8787"
+      SOUKLY_DB: /data/soukly.db
+      CORS_ORIGIN: "*"
+      SESSION_SECRET: ${SESSION_SECRET:-staging-change-me-please-use-openssl-rand}
+      COOKIE_SECURE: "false"
+      COOKIE_SAMESITE: Lax
+      PUBLIC_BASE_URL: ${PUBLIC_BASE_URL:-http://localhost}
+    volumes:
+      - soukly_data:/data
+    expose:
+      - "8787"
+    restart: unless-stopped
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+    restart: unless-stopped
+
+volumes:
+  soukly_data:

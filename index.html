@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Soukly — Tell us what you need</title>
+  <meta name="description" content="AI-powered marketplace for Morocco. Tell us what you need, we find it." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0fdf6',
+              100: '#dcfceb',
+              200: '#bbf7d6',
+              300: '#86efb5',
+              400: '#4ade80',
+              500: '#16a34a',
+              600: '#15803d',
+              700: '#166534',
+              800: '#14532d',
+              900: '#052e16',
+            },
+            sand: {
+              50: '#fdfaf6',
+              100: '#f9f1e6',
+              200: '#f0e0c8',
+              300: '#e5c9a0',
+            },
+            ink: {
+              900: '#0f172a',
+              800: '#1e293b',
+              700: '#334155',
+              600: '#475569',
+              500: '#64748b',
+              400: '#94a3b8',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans Arabic', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            card: '0 4px 20px -4px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.04)',
+            soft: '0 8px 30px -8px rgba(15, 23, 42, 0.12)',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/app.css" />
+</head>
+<body class="bg-sand-50 text-ink-900 font-sans antialiased">
+  <div id="app" class="min-h-screen flex flex-col max-w-lg mx-auto relative pb-24">
+  </div>
+  <nav id="bottom-nav" class="fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-ink-100 safe-bottom">
+    <div class="max-w-lg mx-auto flex items-center justify-around h-16 px-2">
+      <button data-nav="home" class="nav-btn active flex flex-col items-center gap-0.5 min-w-[64px] py-1 text-brand-600">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1h-2z"/></svg>
+        <span class="text-[10px] font-medium">Home</span>
+      </button>
+      <button data-nav="discover" class="nav-btn flex flex-col items-center gap-0.5 min-w-[64px] py-1 text-ink-400">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <span class="text-[10px] font-medium">Discover</span>
+      </button>
+      <button data-nav="shortlist" class="nav-btn relative flex flex-col items-center gap-0.5 min-w-[64px] py-1 text-ink-400">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        <span class="text-[10px] font-medium">Shortlist</span>
+        <span id="shortlist-badge" class="hidden absolute top-0 right-3 bg-brand-500 text-white text-[9px] font-bold rounded-full w-4 h-4 flex items-center justify-center">0</span>
+      </button>
+      <button data-nav="agent" class="nav-btn flex flex-col items-center gap-0.5 min-w-[64px] py-1 text-ink-400">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
+        <span class="text-[10px] font-medium">Agent</span>
+      </button>
+      <button data-nav="profile" class="nav-btn flex flex-col items-center gap-0.5 min-w-[64px] py-1 text-ink-400">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+        <span class="text-[10px] font-medium">Profile</span>
+      </button>
+    </div>
+  </nav>
+  <script>
+    // window.__SOUKLY_ENV__ = { apiBase: "https://YOUR-API-HOST/api" };
+  </script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

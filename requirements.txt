@@ -1,0 +1,3 @@
+# Soukly API runs on Python stdlib.
+# Optional: uncomment when using DATABASE_URL on Render Postgres
+# psycopg[binary]>=3.1

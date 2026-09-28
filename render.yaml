@@ -1,0 +1,30 @@
+# Render Blueprint: one HTTPS service serves UI + /api
+# https://dashboard.render.com → New → Blueprint
+
+services:
+  - type: web
+    name: soukly
+    runtime: python
+    plan: free
+    region: frankfurt
+    rootDir: .
+    buildCommand: "pip install 'psycopg[binary]' || true"
+    startCommand: "python3 server/migrate.py && python3 server/app.py"
+    healthCheckPath: /api/health
+    envVars:
+      - key: APP_ENV
+        value: staging
+      - key: PYTHON_VERSION
+        value: "3.12.0"
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: COOKIE_SAMESITE
+        value: "Lax"
+      - key: CORS_ORIGIN
+        value: "*"
+      - key: PUBLIC_BASE_URL
+        value: ""
+      - key: SOUKLY_DB
+        value: /tmp/soukly.db
